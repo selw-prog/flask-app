@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Sean Relwood — Systems & DevOps Engineer{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+
+    <div class="mb-5">
+      <h1 class="display-5 fw-bold">Sean Relwood</h1>
+      <p class="lead text-secondary mb-4">Systems &amp; DevOps Engineer</p>
+      <p>
+        I build and operate self-hosted infrastructure — running a bare-metal Proxmox hypervisor,
+        k3s Kubernetes cluster, and VLAN-segmented network out of a 1U homelab chassis. This site
+        is served from that infrastructure via a Cloudflare Tunnel.
+      </p>
+      <p>
+        My work spans network administration, container orchestration, and full-stack web development.
+        The projects below are built on real data and running on real hardware.
+      </p>
+      <a href="/projects" class="btn btn-primary me-2">View Projects</a>
+      <a href="https://github.com/seanrelwood" target="_blank" rel="noopener" class="btn btn-outline-secondary">
+        <i class="bi bi-github me-1"></i>GitHub
+      </a>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-sm-6">
+        <div class="card h-100 bg-dark border-secondary">
+          <div class="card-body">
+            <h6 class="text-secondary text-uppercase small mb-2">Infrastructure</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-secondary">Proxmox VE</span>
+              <span class="badge bg-secondary">k3s</span>
+              <span class="badge bg-secondary">MikroTik</span>
+              <span class="badge bg-secondary">Cisco</span>
+              <span class="badge bg-secondary">WireGuard</span>
+              <span class="badge bg-secondary">Cloudflare</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card h-100 bg-dark border-secondary">
+          <div class="card-body">
+            <h6 class="text-secondary text-uppercase small mb-2">Development</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-secondary">Python</span>
+              <span class="badge bg-secondary">Flask</span>
+              <span class="badge bg-secondary">MySQL</span>
+              <span class="badge bg-secondary">Docker</span>
+              <span class="badge bg-secondary">JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

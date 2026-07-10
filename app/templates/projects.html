@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Projects — Sean Relwood{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+
+    <h2 class="fw-bold mb-1">Projects</h2>
+    <p class="text-secondary mb-5">Data-driven applications built on homelab infrastructure.</p>
+
+    <div class="card bg-dark border-secondary mb-4">
+      <div class="card-body p-4">
+        <div class="d-flex justify-content-between align-items-start mb-2">
+          <h5 class="fw-semibold mb-0">Tornado Events Database</h5>
+          <span class="badge bg-success">Live</span>
+        </div>
+        <p class="text-secondary mb-3">
+          A searchable database of thousands of NOAA tornado events across the United States.
+          Filter by state to explore event history by county, EF scale, and year, visualized
+          in an interactive chart.
+        </p>
+        <div class="d-flex flex-wrap gap-2 mb-3">
+          <span class="badge bg-secondary">Python</span>
+          <span class="badge bg-secondary">Flask</span>
+          <span class="badge bg-secondary">MySQL</span>
+          <span class="badge bg-secondary">Chart.js</span>
+          <span class="badge bg-secondary">Bootstrap</span>
+        </div>
+        <a href="/projects/tornado" class="btn btn-sm btn-primary">View Project</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
