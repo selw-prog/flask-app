@@ -71,7 +71,9 @@ def parse_file(path: str) -> pd.DataFrame:
     df['scale']  = df['scale'].str.strip().replace('', None)
     df['location'] = df['location'].str.strip().replace('', None)
 
-    return df.dropna(subset=['id', 'event_date', 'state', 'county'])
+    df = df.dropna(subset=['id', 'event_date', 'state', 'county'])
+    df = df.where(pd.notna(df), other=None)
+    return df
 
 
 def import_file(path: str, engine) -> int:
