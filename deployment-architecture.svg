@@ -1,0 +1,109 @@
+<svg viewBox="0 0 1000 760" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI', Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b949e"/>
+    </marker>
+    <marker id="arrowOrange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f48120"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#58a6ff"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1000" height="760" fill="#0d1117"/>
+
+  <!-- Title -->
+  <text x="500" y="30" fill="#e6edf3" font-size="18" font-weight="600" text-anchor="middle">Flask App — Deployment Architecture</text>
+  <text x="500" y="50" fill="#8b949e" font-size="11" text-anchor="middle">Cloudflare Tunnel · k3s · nginx · gunicorn · MySQL</text>
+
+  <!-- Browser -->
+  <ellipse cx="415" cy="84" rx="95" ry="23" fill="#161b22" stroke="#8b949e" stroke-width="1.5"/>
+  <text x="415" y="89" fill="#e6edf3" font-size="13" text-anchor="middle">Browser / Internet</text>
+
+  <!-- Arrow: Browser → Cloudflare -->
+  <line x1="415" y1="107" x2="415" y2="133" stroke="#f48120" stroke-width="1.5" marker-end="url(#arrowOrange)"/>
+  <text x="422" y="125" fill="#8b949e" font-size="10">HTTPS</text>
+
+  <!-- Cloudflare Edge -->
+  <rect x="255" y="136" width="320" height="56" rx="6" fill="#161b22" stroke="#f48120" stroke-width="1.5"/>
+  <text x="415" y="159" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">Cloudflare Edge</text>
+  <text x="415" y="178" fill="#f48120" font-size="11" text-anchor="middle">TLS Termination · WAF · DDoS Protection</text>
+
+  <!-- Arrow: Cloudflare → namespace (tunnel) -->
+  <line x1="415" y1="192" x2="415" y2="236" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrow)"/>
+  <text x="422" y="218" fill="#8b949e" font-size="10">Encrypted Tunnel</text>
+
+  <!-- k3s web namespace box -->
+  <rect x="35" y="242" width="760" height="490" rx="8" fill="none" stroke="#58a6ff" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="55" y="262" fill="#58a6ff" font-size="11">k3s · web namespace</text>
+
+  <!-- cloudflared -->
+  <rect x="295" y="270" width="240" height="52" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="415" y="293" fill="#e6edf3" font-size="14" font-weight="600" text-anchor="middle">cloudflared</text>
+  <text x="415" y="311" fill="#3fb950" font-size="11" text-anchor="middle">Tunnel Connector</text>
+
+  <!-- Arrow: cloudflared → flask-app-service -->
+  <line x1="415" y1="322" x2="415" y2="356" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="422" y="343" fill="#8b949e" font-size="10">HTTP :80</text>
+
+  <!-- flask-app-service -->
+  <rect x="270" y="359" width="290" height="48" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="415" y="380" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">flask-app-service</text>
+  <text x="415" y="397" fill="#8b949e" font-size="11" text-anchor="middle">ClusterIP · :80</text>
+
+  <!-- Arrow: service → pod -->
+  <line x1="415" y1="407" x2="415" y2="438" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- flask-app pod outer box -->
+  <rect x="60" y="441" width="680" height="104" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="78" y="457" fill="#8b949e" font-size="10">flask-app pod</text>
+
+  <!-- nginx container -->
+  <rect x="75" y="460" width="270" height="72" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="210" y="486" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">nginx</text>
+  <text x="210" y="503" fill="#8b949e" font-size="11" text-anchor="middle">Reverse Proxy · :80</text>
+  <text x="210" y="520" fill="#8b949e" font-size="10" text-anchor="middle">proxy_pass → 127.0.0.1:8000</text>
+
+  <!-- Arrow: nginx → gunicorn -->
+  <line x1="345" y1="496" x2="383" y2="496" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- gunicorn container -->
+  <rect x="385" y="460" width="340" height="72" rx="4" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
+  <text x="555" y="486" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">gunicorn + Flask</text>
+  <text x="555" y="503" fill="#8b949e" font-size="11" text-anchor="middle">WSGI Application · :8000</text>
+  <text x="555" y="520" fill="#8b949e" font-size="10" text-anchor="middle">/metrics · PrometheusMetrics</text>
+
+  <!-- Arrow: pod → mysql-service -->
+  <line x1="415" y1="545" x2="415" y2="576" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="422" y="565" fill="#8b949e" font-size="10">mysql+pymysql</text>
+
+  <!-- mysql-service -->
+  <rect x="270" y="579" width="290" height="48" rx="6" fill="#161b22" stroke="#ffa657" stroke-width="1.5"/>
+  <text x="415" y="600" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">mysql-service</text>
+  <text x="415" y="617" fill="#8b949e" font-size="11" text-anchor="middle">ClusterIP · :3306</text>
+
+  <!-- Arrow: mysql-service → MySQL -->
+  <line x1="415" y1="627" x2="415" y2="658" stroke="#8b949e" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- MySQL StatefulSet -->
+  <rect x="75" y="661" width="580" height="58" rx="6" fill="#161b22" stroke="#ffa657" stroke-width="1.5"/>
+  <text x="270" y="685" fill="#e6edf3" font-size="13" font-weight="600" text-anchor="middle">MySQL StatefulSet</text>
+  <text x="270" y="703" fill="#8b949e" font-size="11" text-anchor="middle">flask_app · tornado_events</text>
+
+  <!-- PVC -->
+  <rect x="505" y="669" width="135" height="42" rx="4" fill="#0d1117" stroke="#ffa657" stroke-width="1"/>
+  <text x="572" y="686" fill="#e6edf3" font-size="11" font-weight="600" text-anchor="middle">PVC</text>
+  <text x="572" y="702" fill="#8b949e" font-size="10" text-anchor="middle">10Gi · ReadWriteOnce</text>
+
+  <!-- GHCR (external, right side) -->
+  <rect x="830" y="459" width="140" height="52" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+  <text x="900" y="481" fill="#e6edf3" font-size="12" font-weight="600" text-anchor="middle">GHCR</text>
+  <text x="900" y="498" fill="#8b949e" font-size="10" text-anchor="middle">ghcr.io/selw-prog</text>
+
+  <!-- Arrow: GHCR → flask-app pod (image pull, dashed) -->
+  <line x1="830" y1="483" x2="742" y2="483" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#arrow)"/>
+  <text x="784" y="475" fill="#8b949e" font-size="9" text-anchor="middle">image pull</text>
+
+</svg>
