@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Sean Elwood — Systems & DevOps Engineer{% endblock %}
+{% block title %}Sean Elwood — Network Observability Engineer{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
@@ -8,11 +8,16 @@
 
     <div class="mb-5">
       <h1 class="display-5 fw-bold">Sean Elwood</h1>
-      <p class="lead text-secondary mb-4">Systems &amp; DevOps Engineer</p>
+      <p class="lead text-secondary mb-4">Network Observability Engineer</p>
       <p>
-        I build and operate self-hosted infrastructure — running a bare-metal Proxmox hypervisor,
-        k3s Kubernetes cluster, and VLAN-segmented network out of a 1U homelab chassis. This site
-        is served from that infrastructure via a Cloudflare Tunnel.
+        Professionally, I manage a network detection and response (NDR) platform — full wire-data
+        analytics across east-west and north-south traffic, used for performance troubleshooting,
+        threat detection, and infrastructure visibility at enterprise scale.
+      </p>
+      <p>
+        Outside of work, I build and operate self-hosted infrastructure — running a bare-metal
+        Proxmox hypervisor, k3s Kubernetes cluster, and VLAN-segmented network out of a 1U homelab
+        chassis. This site is served from that infrastructure via a Cloudflare Tunnel.
       </p>
       <p>
         My work spans network administration, container orchestration, and full-stack web development.
@@ -28,7 +33,20 @@
       <div class="col-sm-6">
         <div class="card h-100 bg-dark border-secondary">
           <div class="card-body">
-            <h6 class="text-secondary text-uppercase small mb-2">Infrastructure</h6>
+            <h6 class="text-secondary text-uppercase small mb-2">Professional Focus</h6>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-secondary">Network Observability</span>
+              <span class="badge bg-secondary">NDR</span>
+              <span class="badge bg-secondary">Wire Data Analytics</span>
+              <span class="badge bg-secondary">Packet Capture</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card h-100 bg-dark border-secondary">
+          <div class="card-body">
+            <h6 class="text-secondary text-uppercase small mb-2">Homelab Infrastructure</h6>
             <div class="d-flex flex-wrap gap-2">
               <span class="badge bg-secondary">Proxmox VE</span>
               <span class="badge bg-secondary">k3s</span>
@@ -40,6 +58,9 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row g-3 mt-1">
       <div class="col-sm-6">
         <div class="card h-100 bg-dark border-secondary">
           <div class="card-body">
