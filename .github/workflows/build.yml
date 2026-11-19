@@ -2,7 +2,7 @@ name: build-and-push
 
 on:
   push:
-    branches: [main]
+    branches: [main, "ci/**"]
     paths-ignore:
       - "README.md"
       - "*.svg"
@@ -43,7 +43,7 @@ jobs:
           images: ${{ env.IMAGE }}
           tags: |
             type=sha,prefix=sha-,format=short
-            type=raw,value=latest
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build (load for smoke test)
         uses: docker/build-push-action@v6
