@@ -1,6 +1,5 @@
 import os
 from flask import Flask
-from prometheus_flask_exporter import PrometheusMetrics
 from .db import db
 from .routes.main import main_bp
 from .routes.tornado import tornado_bp
@@ -23,7 +22,6 @@ def create_app():
     }
 
     db.init_app(app)
-    PrometheusMetrics(app)
 
     app.register_blueprint(main_bp)
     app.register_blueprint(tornado_bp, url_prefix='/projects/tornado')

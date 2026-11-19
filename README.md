@@ -29,7 +29,7 @@ Live at [www.seanelwood.me](https://www.seanelwood.me)
 
 ```
 app/
-    __init__.py          # App factory, SQLAlchemy binds, Prometheus metrics
+    __init__.py          # App factory, SQLAlchemy binds
     db.py                # SQLAlchemy instance
     models/
         tornado.py       # TornadoEvent ORM model
@@ -73,10 +73,9 @@ Requires a `.env` file or environment variables for database credentials. See `a
 
 ## Deployment
 
-Image is built and pushed to GHCR on every release. K3s manifests live in the [homelab](https://github.com/selw-prog/homelab) repository.
+GitHub Actions (`.github/workflows/build.yml`) builds, smoke-tests and pushes the image to GHCR on every push to `main`, tagged `sha-<short>` and `latest`. K3s manifests live in the [homelab](https://github.com/selw-prog/homelab) repository and pin the `sha-` tag.
 
 ```bash
-docker build -t ghcr.io/selw-prog/flask-app:latest .
-docker push ghcr.io/selw-prog/flask-app:latest
-kubectl rollout restart deployment/flask-app -n web
+kubectl -n web set image deployment/flask-app gunicorn=ghcr.io/selw-prog/flask-app:sha-<short>
+kubectl -n web rollout status deployment/flask-app
 ```
